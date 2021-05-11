@@ -16,11 +16,7 @@ const NotesWrapper = styled.div`
 const ContentWrapper = styled.div`
   margin-left: 12px;
 `
-const initialNotes = [{id: 1, title: 'Hello world!', text: 'This is my first note!'}, {
-    id: 2,
-    title: 'Hello universe!',
-    text: 'This is my second note!'
-}];
+const initialNotes = [{id: 1, title: 'My first note!', text: 'This is my first note!'}];
 
 function App() {
     const [notes, setNotes] = useState(initialNotes);

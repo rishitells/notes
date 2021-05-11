@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import editIcon from './edit.svg';
 import Button from "../Button";
 import Flex from "../Flex";
-import {useState} from "react";
+import { useState } from "react";
 import Input from "../Input";
 
 const List = styled.ul`
@@ -29,8 +29,8 @@ const Title = styled.h4`
 const Notes = ({items, onNoteSelection, onTitleChange, selectedId}) => {
     const [editId, setEditId] = useState(selectedId);
 
-    const handleKeyDown = (isEnterPressed) => {
-        if(isEnterPressed) setEditId(null);
+    const handleKeyDown = (isSubmitted) => {
+        if(isSubmitted) setEditId(null);
     }
 
     return <List>

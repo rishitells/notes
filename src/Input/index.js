@@ -15,8 +15,8 @@ const Input = ({value, onChange, handleKeyDown}) => {
     const inputRef = useRef();
 
     const onKeyDown = (e) => {
-        const isEnterPressed = e.keyCode === 13;
-        handleKeyDown(isEnterPressed);
+        const isSubmitted = e.keyCode === 13;
+        handleKeyDown(isSubmitted);
     }
 
     useEffect(() => {
