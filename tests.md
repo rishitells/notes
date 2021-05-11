@@ -6,3 +6,4 @@
 4. User should be able to edit note content
 5. When user is editing a note and presses 'enter', note title should get into view mode
 6. When user is editing a note and clicks on another note, the last note state should get into view mode
+7. Note preview should be visible to the user below title

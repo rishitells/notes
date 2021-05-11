@@ -9,6 +9,8 @@ import Flex from "./Flex";
 const Sidebar = styled.div`
   border-right: 1px solid darkgray;
   min-height: 480px;
+  width: 280px;
+  overflow: hidden;
 `;
 const NotesWrapper = styled.div`
   margin-top: 12px;
@@ -23,7 +25,7 @@ function App() {
     const [selectedId, setSelectedId] = useState(null);
     const [searchTerm, setSearchTerm] = useState('')
 
-    const filteredNotes = notes.filter(note => note.title.includes(searchTerm));
+    const filteredNotes = notes.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase()));
     const selectedNote = notes.find(note => note.id === selectedId);
 
     const handleNoteSelection = (id) => {

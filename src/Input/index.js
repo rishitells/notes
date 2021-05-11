@@ -7,7 +7,7 @@ const StyledInput = styled.input`
   border: none;
   background: inherit;
   outline: none;
-  font-size: inherit;
+  font-size: 18px;
   font-family: inherit;
 `;
 

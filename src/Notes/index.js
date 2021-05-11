@@ -20,10 +20,16 @@ const ListItem = styled.li`
 const TitleWrapper = styled.div`
   padding: 12px 0;
 `;
+const NotePreview = styled.p`
+  white-space: nowrap;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
 
-const Title = styled.h4`
+const Title = styled.h3`
   margin: 0;
-  font-weight: normal;
+  font-weight: bold;
 `
 
 const Notes = ({items, onNoteSelection, onTitleChange, selectedId}) => {
@@ -45,7 +51,7 @@ const Notes = ({items, onNoteSelection, onTitleChange, selectedId}) => {
             }}>
                 <Flex spaceBetween>
                     <TitleWrapper>{isSelected && isEditingTitle ? <Input handleKeyDown={handleKeyDown} value={item.title} onChange={(value) => {onTitleChange(item.id, value)}}/> :
-                        <Title>{item.title}</Title>}</TitleWrapper>
+                        <Title>{item.title}</Title>}<NotePreview>{item.text}</NotePreview></TitleWrapper>
                     {isSelected && <Button onClick={() => {
                         setEditId(item.id);
                     }}><img src={editIcon} alt="edit"/></Button>}
