@@ -49,7 +49,7 @@ function App() {
         setNotes(prevNotes => ([
             ...prevNotes,
             {
-                id: prevNotes[prevNotes.length - 1].id + 1,
+                id: prevNotes.length ? prevNotes[prevNotes.length - 1].id + 1 : 1,
                 title: 'New note',
                 text: ''
             }
@@ -62,6 +62,12 @@ function App() {
                 if (item.id === id) return {...item, title}
                 return item;
             })
+        })
+    }
+
+    const handleNoteDelete = (id) => {
+        setNotes(prevNotes => {
+            return prevNotes.filter(item => item.id !== id)
         })
     }
 
@@ -79,7 +85,7 @@ function App() {
                 </Sidebar>
                 <ContentWrapper>
                     {selectedNote &&
-                    <Content id={selectedNote.id} onTextChange={handleTextChange} text={selectedNote.text}/>}
+                    <Content id={selectedNote.id} title={selectedNote.title} onTextChange={handleTextChange} onDelete={handleNoteDelete} text={selectedNote.text}/>}
                     {!selectedNote && <p>Select a note to begin...</p>}
                 </ContentWrapper>
             </Flex>

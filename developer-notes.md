@@ -7,3 +7,8 @@
 5. When user is editing a note and presses 'enter', note title should get into view mode
 6. When user is editing a note and clicks on another note, the last note state should get into view mode
 7. Note preview should be visible to the user below title
+8. User should be able to delete a note
+
+## Bugs
+
+Clicking on another note and clicking on edit button doesn't work first time, works second time

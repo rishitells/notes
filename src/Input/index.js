@@ -20,7 +20,7 @@ const Input = ({value, onChange, handleKeyDown}) => {
     }
 
     useEffect(() => {
-        inputRef.current.focus();
+        inputRef.current.select();
     }, []);
 
     const handleChange = e => {
