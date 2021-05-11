@@ -7,14 +7,15 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  padding: 4px 0;
+  padding: 12px 4px;
   cursor: pointer;
+  background: ${({isSelected}) => isSelected ? 'lightgray' : 'white'}
 `
 
-const Notes = ({items, onNoteSelection}) => {
+const Notes = ({items, onNoteSelection, selectedId}) => {
     return <List>
         {items.map(item => {
-            return <ListItem key={item.id} onClick={() => onNoteSelection(item.id)}>{item.title}</ListItem>
+            return <ListItem isSelected={selectedId === item.id} key={item.id} onClick={() => onNoteSelection(item.id)}>{item.title}</ListItem>
         })}
     </List>
 }

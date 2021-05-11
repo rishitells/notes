@@ -1,14 +1,17 @@
 import styled from 'styled-components/macro';
 
-const Link = styled.a`
-    color: teal;
+import plusIcon from './plus.svg';
+
+const Button = styled.button`
+  border: none;
+  background: none;
   cursor: pointer;
 `;
 
 const AddNote = () => {
-    return <Link>
-        Add Note
-    </Link>
+    return <Button>
+        <img alt="add" src={plusIcon}/>
+    </Button>
 }
 
 export default AddNote;
