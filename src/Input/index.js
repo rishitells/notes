@@ -1,15 +1,33 @@
 import styled from 'styled-components/macro';
+import {useEffect, useRef} from "react";
 
 const StyledInput = styled.input`
-  padding: 8px 4px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: inherit;
+  outline: none;
+  font-size: inherit;
+  font-family: inherit;
 `;
 
-const Index = ({value, onChange}) => {
+const Input = ({value, onChange, handleKeyDown}) => {
+    const inputRef = useRef();
+
+    const onKeyDown = (e) => {
+        const isEnterPressed = e.keyCode === 13;
+        handleKeyDown(isEnterPressed);
+    }
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
+
     const handleChange = e => {
         onChange(e.target.value);
     }
 
-    return <StyledInput type="text" value={value} onChange={handleChange} />
+    return <StyledInput onKeyDown={onKeyDown} ref={inputRef} type="text" value={value} onChange={handleChange} />
 }
 
-export default Index;
+export default Input;

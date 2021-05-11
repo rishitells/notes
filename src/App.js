@@ -4,10 +4,8 @@ import Notes from "./Notes";
 import Content from "./Content";
 import {useState} from "react";
 import Search from "./Search";
+import Flex from "./Flex";
 
-const Flex = styled.div`
-  display: flex;
-`;
 const Sidebar = styled.div`
   border-right: 1px solid darkgray;
   min-height: 480px;
@@ -43,7 +41,27 @@ function App() {
     const handleTextChange = (id, text) => {
         setNotes(prevNotes => {
             return prevNotes.map(item => {
-                if (item.id === id) return {...item, text: text}
+                if (item.id === id) return {...item, text}
+                return item;
+            })
+        })
+    }
+
+    const handleNoteAdd = () => {
+        setNotes(prevNotes => ([
+            ...prevNotes,
+            {
+                id: prevNotes[prevNotes.length - 1].id + 1,
+                title: 'New note',
+                text: ''
+            }
+        ]))
+    }
+
+    const handleTitleChange = (id, title) => {
+        setNotes(prevNotes => {
+            return prevNotes.map(item => {
+                if (item.id === id) return {...item, title}
                 return item;
             })
         })
@@ -55,10 +73,10 @@ function App() {
                 <Sidebar>
                     <Flex>
                         <Search term={searchTerm} onInputChange={handleSearchTermChange}/>
-                        <AddNote/>
+                        <AddNote handleClick={handleNoteAdd}/>
                     </Flex>
                     <NotesWrapper>
-                        <Notes selectedId={selectedId} onNoteSelection={handleNoteSelection} items={filteredNotes}/>
+                        <Notes selectedId={selectedId} onNoteSelection={handleNoteSelection} onTitleChange={handleTitleChange} items={filteredNotes}/>
                     </NotesWrapper>
                 </Sidebar>
                 <ContentWrapper>

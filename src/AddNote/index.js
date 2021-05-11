@@ -1,15 +1,8 @@
-import styled from 'styled-components/macro';
-
 import plusIcon from './plus.svg';
+import Button from "../Button";
 
-const Button = styled.button`
-  border: none;
-  background: none;
-  cursor: pointer;
-`;
-
-const AddNote = () => {
-    return <Button>
+const AddNote = ({handleClick}) => {
+    return <Button onClick={handleClick}>
         <img alt="add" src={plusIcon}/>
     </Button>
 }
