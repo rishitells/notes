@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import AddNote from "./AddNote/Notes";
+import AddNote from "./AddNote/AddNote";
 import Notes from "./Notes/Notes";
 import Content from "./Content/Content";
 import { useState } from "react";

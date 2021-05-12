@@ -16,7 +16,7 @@ const Header = ({ id, title, onDelete }) => {
   return (
     <Flex spaceBetween>
       <h4>{title}</h4>
-      <Button onClick={() => onDelete(id)}>
+      <Button role="deleteNote" onClick={() => onDelete(id)}>
         <img src={deleteIcon} alt="delete" />
       </Button>
     </Flex>
@@ -48,7 +48,7 @@ const Content = ({ id, text, title, onTextChange, onDelete }) => {
         onChange={handleTextChange}
         value={text}
       />
-      <p>{text.length}</p>
+      <p data-testid="count">{text.length}</p>
     </>
   );
 };
