@@ -36,6 +36,7 @@ const Content = ({id, text, title, onTextChange, onDelete}) => {
         <>
             <Header id={id} title={title} onDelete={onDelete}/>
             <TextArea ref={inputRef} onChange={handleTextChange} value={text}/>
+            <p>{text.length}</p>
         </>
     )
 }

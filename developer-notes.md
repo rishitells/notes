@@ -9,6 +9,7 @@
 7. Note preview should be visible to the user below title
 8. User should be able to delete a note
 9. On click, note should open
+10. It should display number of characters in notes below the note
 
 ## Bugs
 
