@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 import Flex from "../Flex";
 import Button from "../Button";
 import deleteIcon from './delete.svg';
+import {useEffect, useRef} from "react";
 
 const TextArea = styled.textarea`
   font-family: inherit;
@@ -21,6 +22,12 @@ const Header = ({id, title, onDelete}) => {
 }
 
 const Content = ({id, text, title, onTextChange, onDelete}) => {
+    const inputRef = useRef();
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, [id]);
+
     const handleTextChange = (e) => {
         onTextChange(id, e.target.value);
     }
@@ -28,7 +35,7 @@ const Content = ({id, text, title, onTextChange, onDelete}) => {
     return (
         <>
             <Header id={id} title={title} onDelete={onDelete}/>
-            <TextArea onChange={handleTextChange} value={text}/>
+            <TextArea ref={inputRef} onChange={handleTextChange} value={text}/>
         </>
     )
 }
