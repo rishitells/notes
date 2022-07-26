@@ -1,23 +1,10 @@
-import styled from "styled-components/macro";
+import React from "react";
+
 import AddNote from "./AddNote/AddNote";
 import Notes from "./Notes/Notes";
 import Content from "./Content/Content";
 import { useState } from "react";
 import Search from "./Search/Search";
-import Flex from "./Flex/Flex";
-
-const Sidebar = styled.div`
-  border-right: 1px solid darkgray;
-  min-height: 480px;
-  width: 280px;
-  overflow: hidden;
-`;
-const NotesWrapper = styled.div`
-  margin-top: 12px;
-`;
-const ContentWrapper = styled.div`
-  margin-left: 12px;
-`;
 
 function App({ initialNotes }) {
   const [notes, setNotes] = useState(initialNotes);
@@ -74,22 +61,22 @@ function App({ initialNotes }) {
 
   return (
     <div className="App">
-      <Flex>
-        <Sidebar>
-          <Flex>
+      <div className="flex pt-4 justify-center">
+        <div className="w-64">
+          <div className="flex py-2">
             <Search term={searchTerm} onInputChange={handleSearchTermChange} />
             <AddNote handleClick={handleNoteAdd} />
-          </Flex>
-          <NotesWrapper>
+          </div>
+          <div>
             <Notes
               selectedId={selectedId}
               onNoteSelection={handleNoteSelection}
               onTitleChange={handleTitleChange}
               items={filteredNotes}
             />
-          </NotesWrapper>
-        </Sidebar>
-        <ContentWrapper>
+          </div>
+        </div>
+        <div className="w-96 pl-4 pt-3">
           {selectedNote && (
             <Content
               id={selectedNote.id}
@@ -99,9 +86,9 @@ function App({ initialNotes }) {
               text={selectedNote.text}
             />
           )}
-          {!selectedNote && <p>Select a note to begin...</p>}
-        </ContentWrapper>
-      </Flex>
+          {!selectedNote && <h2 className="text-2xl">Select a note to begin...</h2>}
+        </div>
+      </div>
     </div>
   );
 }

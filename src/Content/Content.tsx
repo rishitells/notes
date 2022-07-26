@@ -1,25 +1,17 @@
-import styled from "styled-components/macro";
-import Flex from "../Flex/Flex";
-import Button from "../Button/Button";
+import React from "react";
+
+// @ts-ignore
 import deleteIcon from "./delete.svg";
 import { useEffect, useRef } from "react";
 
-const TextArea = styled.textarea`
-  font-family: inherit;
-  font-size: 16px;
-  padding: 8px;
-  width: 30em;
-  height: 15em;
-`;
-
 const Header = ({ id, title, onDelete }) => {
   return (
-    <Flex spaceBetween>
-      <h4>{title}</h4>
-      <Button role="deleteNote" onClick={() => onDelete(id)}>
+    <div className="flex justify-between">
+      <h4 className="text-2xl">{title}</h4>
+      <button role="deleteNote" onClick={() => onDelete(id)}>
         <img src={deleteIcon} alt="delete" />
-      </Button>
-    </Flex>
+      </button>
+    </div>
   );
 };
 
@@ -27,6 +19,7 @@ const Content = ({ id, text, title, onTextChange, onDelete }) => {
   const inputRef = useRef();
 
   useEffect(() => {
+    // @ts-ignore
     inputRef.current.focus();
   }, [id]);
 
@@ -35,21 +28,22 @@ const Content = ({ id, text, title, onTextChange, onDelete }) => {
   };
 
   return (
-    <>
+    <div>
       <Header
         data-testid="noteContentHeader"
         id={id}
         title={title}
         onDelete={onDelete}
       />
-      <TextArea
+      <textarea
+        className="w-full my-2 border-2 border-gray-200 outline-none px-2 py-2"
         data-testid="noteContentEditable"
         ref={inputRef}
         onChange={handleTextChange}
         value={text}
       />
       <p data-testid="count">{text.length}</p>
-    </>
+    </div>
   );
 };
 

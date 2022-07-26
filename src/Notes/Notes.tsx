@@ -1,36 +1,9 @@
-import styled from "styled-components/macro";
+import React from "react";
+
+// @ts-ignore
 import editIcon from "./edit.svg";
-import Button from "../Button/Button";
-import Flex from "../Flex/Flex";
 import { useState } from "react";
 import Input from "../Input/Input";
-
-const List = styled.ul`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-`;
-
-const ListItem = styled.li`
-  padding: 0 4px;
-  cursor: pointer;
-  background: ${({ isSelected }) => (isSelected ? "lightgray" : "white")};
-`;
-
-const TitleWrapper = styled.div`
-  padding: 12px 0;
-`;
-const NotePreview = styled.p`
-  white-space: nowrap;
-  width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const Title = styled.h3`
-  margin: 0;
-  font-weight: bold;
-`;
 
 const Notes = ({ items, onNoteSelection, onTitleChange, selectedId }) => {
   const [editId, setEditId] = useState(selectedId);
@@ -40,14 +13,14 @@ const Notes = ({ items, onNoteSelection, onTitleChange, selectedId }) => {
   };
 
   return (
-    <List data-testid="notesList">
+    <ul data-testid="notesList">
       {items.map((item) => {
         const isSelected = selectedId === item.id;
         const isEditingTitle = editId === item.id;
 
         return (
-          <ListItem
-            isSelected={isSelected}
+          <li
+            className="py-3 px-2 cursor-pointer hover:bg-gray-100"
             key={item.id}
             onClick={() => {
               onNoteSelection(item.id);
@@ -55,8 +28,8 @@ const Notes = ({ items, onNoteSelection, onTitleChange, selectedId }) => {
               if (editId !== null && selectedId !== editId) setEditId(null);
             }}
           >
-            <Flex spaceBetween>
-              <TitleWrapper>
+            <div className="flex justify-between">
+              <div>
                 {isSelected && isEditingTitle ? (
                   <Input
                     role="titleInput"
@@ -67,27 +40,28 @@ const Notes = ({ items, onNoteSelection, onTitleChange, selectedId }) => {
                     }}
                   />
                 ) : (
-                  <Title data-testid="noteTitle">{item.title}</Title>
+                  <h2 className="text-xl" data-testid="noteTitle">
+                    {item.title}
+                  </h2>
                 )}
-                <NotePreview data-testid="noteContentPreview">
-                  {item.text}
-                </NotePreview>
-              </TitleWrapper>
+                <div data-testid="noteContentPreview">{item.text}</div>
+              </div>
               {isSelected && (
-                <Button
+                <button
+                  className="w-8 h-8 pl-2 active:bg-gray-200 rounded-r-md"
                   role="editTitle"
                   onClick={() => {
                     setEditId(item.id);
                   }}
                 >
                   <img src={editIcon} alt="edit" />
-                </Button>
+                </button>
               )}
-            </Flex>
-          </ListItem>
+            </div>
+          </li>
         );
       })}
-    </List>
+    </ul>
   );
 };
 

@@ -1,15 +1,4 @@
-import styled from "styled-components/macro";
-import { useEffect, useRef } from "react";
-
-const StyledInput = styled.input`
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: inherit;
-  outline: none;
-  font-size: 18px;
-  font-family: inherit;
-`;
+import React, { useEffect, useRef } from "react";
 
 const Input = ({ value, onChange, handleKeyDown, ...rest }) => {
   const inputRef = useRef();
@@ -20,6 +9,7 @@ const Input = ({ value, onChange, handleKeyDown, ...rest }) => {
   };
 
   useEffect(() => {
+    // @ts-ignore
     inputRef.current.select();
   }, []);
 
@@ -28,7 +18,7 @@ const Input = ({ value, onChange, handleKeyDown, ...rest }) => {
   };
 
   return (
-    <StyledInput
+    <input
       onKeyDown={onKeyDown}
       ref={inputRef}
       type="text"
